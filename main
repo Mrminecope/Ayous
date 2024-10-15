@@ -1,0 +1,111 @@
+echo "# Ayous" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Mrminecope/Ayous.git
+git push -u origin main
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayous Search Engine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .search-container {
+            margin-top: 50px;
+        }
+
+        input[type="text"] {
+            width: 40%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4285F4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #357ae8;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .results {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Ayous Search Engine</h1>
+
+    <div class="search-container">
+        <form id="searchForm" onsubmit="return searchAyous()">
+            <input type="text" id="searchQuery" placeholder="Search Ayous...">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+
+    <div class="results" id="results"></div>
+
+    <div class="footer">
+        <p>Visit our website: <a href="https://your-website-link.com">Your Website</a></p>
+    </div>
+
+    <script>
+        function searchAyous() {
+            const query = document.getElementById('searchQuery').value.toLowerCase();
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';  // Clear previous results
+
+            // Example search data (this could be replaced with a more complex data structure or fetched from a server)
+            const data = [
+                { title: "Ayous Home", url: "https://your-website-link.com", description: "Welcome to Ayous, your go-to search engine." },
+                { title: "About Ayous", url: "https://your-website-link.com/about", description: "Learn more about the Ayous search engine." },
+                { title: "Ayous Blog", url: "https://your-website-link.com/blog", description: "Read the latest updates on our Ayous blog." }
+            ];
+
+            const filteredData = data.filter(item => item.title.toLowerCase().includes(query) || item.description.toLowerCase().includes(query));
+
+            if (filteredData.length > 0) {
+                filteredData.forEach(item => {
+                    const resultItem = <p><a href="${item.url}">${item.title}</a><br>${item.description}</p>;
+                    resultsDiv.innerHTML += resultItem;
+                });
+            } else {
+                resultsDiv.innerHTML = '<p>No results found</p>';
+            }
+
+            return false; // Prevent form submission
+        }
+    </script>
+
+</body>
+</html>
